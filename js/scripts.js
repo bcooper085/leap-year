@@ -1,5 +1,5 @@
 var leapYear = function(year) {
-  if ()(year % 4 === 0) && (year % 100 !== 0) || (year % 400 === 0)) {
+  if ((year % 4 === 0) && (year % 100 !== 0) || (year % 400 === 0)) {
     return true;
   } else {
     return false;
@@ -7,10 +7,18 @@ var leapYear = function(year) {
 };
 
 $(function() {
-  $("form").submit(function(event) {
-    event.preventDefault();
+  $("form").submit(function() {
     var year = parseInt($("input#year").val());
     var result = leapYear(year);
-    $("#result").text(result);
+
+    if (!result) {
+      $('.not').text("not");
+    } else {
+      $('.not').text("");
+    }
+
+    $('.year').text(year);
+    $("#result").show();
+    event.preventDefault();
   });
 });
